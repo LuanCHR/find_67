@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>:root{color-scheme:light}body{margin:0}</style>
+<style>:root{color-scheme:light}body{margin:0}[hidden]{display:none!important}</style>
 <title>Ache o 67</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;600&display=swap">
@@ -156,7 +156,7 @@ h1 .n { color: var(--accent); }
 .final p.lead { margin: 0; font-size: 18px; line-height: 1.45; max-width: 32ch; }
 
 .answers { position: relative; height: 250px; margin-top: 8px; }
-.answers button, .wa {
+.answers button {
   font-family: var(--display);
   font-weight: 800;
   font-size: 22px;
@@ -183,15 +183,7 @@ h1 .n { color: var(--accent); }
   box-shadow: 0 5px 0 var(--tile-edge);
   transition: left .18s ease-out, top .18s ease-out;
 }
-.answers button:focus-visible, .wa:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
-.wa {
-  display: inline-block;
-  align-self: flex-start;
-  text-decoration: none;
-  background: var(--accent);
-  color: var(--accent-ink);
-  box-shadow: 0 5px 0 var(--accent-edge);
-}
+.answers button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 
 #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
 
@@ -228,17 +220,12 @@ h1 .n { color: var(--accent); }
     <p class="kicker">Resposta certa</p>
     <h2>Combinado.</h2>
     <p class="lead">Perfeito, dona Alice, agora você só precisa me avisar que aceitou (ia dar muito trabalho fazer o site me notificar).</p>
-    <a id="wa" class="wa" href="#" target="_blank" rel="noopener" hidden>Chamar no WhatsApp</a>
   </section>
 </main>
 <canvas id="confetti"></canvas>
 
 <script>
 (function () {
-  // Para o botão de WhatsApp aparecer, coloque o número com país e DDD, só dígitos. Exemplo: "5511999999999"
-  var WHATSAPP = "";
-  var MENSAGEM = "Achei o 67 três vezes e disse sim";
-
   var TOTAL = 3, COLS = 5, ROWS = 7;
   var DECOYS = [76, 57, 69, 66, 77, 87, 65, 68, 47, 16, 61, 62, 36, 26, 56, 86, 96, 6, 7, 60, 70];
 
@@ -333,11 +320,6 @@ h1 .n { color: var(--accent); }
   yes.addEventListener('click', function () {
     $('final').hidden = true;
     $('done').hidden = false;
-    if (WHATSAPP) {
-      var a = $('wa');
-      a.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(MENSAGEM);
-      a.hidden = false;
-    }
     confetti();
   });
 
